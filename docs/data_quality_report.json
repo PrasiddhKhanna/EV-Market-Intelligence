@@ -1,0 +1,26 @@
+{
+  "source": "ev_market_train.csv",
+  "original_rows": 200000,
+  "clean_rows": 199999,
+  "columns": 37,
+  "exact_duplicate_rows_removed": 1,
+  "duplicate_vehicle_ids_before_cleaning": 1,
+  "missing_cells_before_cleaning": 18996,
+  "missing_columns_before_cleaning": {
+    "battery_cycle_life": 3786,
+    "resale_value_pct_3yr": 6103,
+    "infotainment_screen_inch": 3102,
+    "annual_sales_units": 2028,
+    "customer_rating": 3977
+  },
+  "imputed_numeric_medians": {
+    "battery_cycle_life": 2031.0,
+    "resale_value_pct_3yr": 52.99,
+    "infotainment_screen_inch": 11.0,
+    "annual_sales_units": 3949.0,
+    "customer_rating": 4.1
+  },
+  "model_year_min": 2018,
+  "model_year_max": 2026,
+  "synthetic_notice": "Source dataset explicitly states that records are procedurally generated; manufacturer/model names are fictional."
+}

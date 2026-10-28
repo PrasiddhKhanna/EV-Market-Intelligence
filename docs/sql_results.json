@@ -1,0 +1,1024 @@
+{
+  "Q1. Basic dataset / headline KPIs": {
+    "query": "SELECT COUNT(*) AS vehicle_records,\n       COUNT(DISTINCT vehicle_id) AS unique_vehicles,\n       ROUND(SUM(annual_sales_units), 0) AS total_recorded_sales_units,\n       ROUND(AVG(range_km), 1) AS avg_range_km,\n       ROUND(AVG(price_usd), 0) AS avg_price_usd,\n       ROUND(AVG(customer_rating), 2) AS avg_customer_rating\nFROM ev_market_clean",
+    "row_count": 1,
+    "columns": [
+      "vehicle_records",
+      "unique_vehicles",
+      "total_recorded_sales_units",
+      "avg_range_km",
+      "avg_price_usd",
+      "avg_customer_rating"
+    ],
+    "data": [
+      {
+        "vehicle_records": 199999,
+        "unique_vehicles": 199999,
+        "total_recorded_sales_units": 1558703498.0,
+        "avg_range_km": 324.5,
+        "avg_price_usd": 64921.0,
+        "avg_customer_rating": 4.09
+      }
+    ]
+  },
+  "Q2. Sales by market region": {
+    "query": "SELECT market_region, ROUND(SUM(annual_sales_units), 0) AS sales_units,\n       ROUND(AVG(customer_rating), 2) AS avg_rating\nFROM ev_market_clean\nGROUP BY market_region ORDER BY sales_units DESC",
+    "row_count": 7,
+    "columns": [
+      "market_region",
+      "sales_units",
+      "avg_rating"
+    ],
+    "data": [
+      {
+        "market_region": "South Asia",
+        "sales_units": 225154801.0,
+        "avg_rating": 4.09
+      },
+      {
+        "market_region": "Latin America",
+        "sales_units": 224550443.0,
+        "avg_rating": 4.09
+      },
+      {
+        "market_region": "North America",
+        "sales_units": 223903578.0,
+        "avg_rating": 4.09
+      },
+      {
+        "market_region": "Middle East",
+        "sales_units": 222350127.0,
+        "avg_rating": 4.09
+      },
+      {
+        "market_region": "Asia Pacific",
+        "sales_units": 222184929.0,
+        "avg_rating": 4.09
+      },
+      {
+        "market_region": "Africa",
+        "sales_units": 221800089.0,
+        "avg_rating": 4.09
+      },
+      {
+        "market_region": "Europe",
+        "sales_units": 218759531.0,
+        "avg_rating": 4.09
+      }
+    ]
+  },
+  "Q3. Annual model-year sales trend (interpret as model-year cohort, not calendar sales history)": {
+    "query": "SELECT model_year, ROUND(SUM(annual_sales_units), 0) AS sales_units,\n       COUNT(*) AS vehicle_records\nFROM ev_market_clean GROUP BY model_year ORDER BY model_year",
+    "row_count": 9,
+    "columns": [
+      "model_year",
+      "sales_units",
+      "vehicle_records"
+    ],
+    "data": [
+      {
+        "model_year": 2018,
+        "sales_units": 172933466.0,
+        "vehicle_records": 22321
+      },
+      {
+        "model_year": 2019,
+        "sales_units": 177892283.0,
+        "vehicle_records": 22614
+      },
+      {
+        "model_year": 2020,
+        "sales_units": 172701907.0,
+        "vehicle_records": 21861
+      },
+      {
+        "model_year": 2021,
+        "sales_units": 166652227.0,
+        "vehicle_records": 22103
+      },
+      {
+        "model_year": 2022,
+        "sales_units": 171717981.0,
+        "vehicle_records": 21981
+      },
+      {
+        "model_year": 2023,
+        "sales_units": 173316231.0,
+        "vehicle_records": 22294
+      },
+      {
+        "model_year": 2024,
+        "sales_units": 177765439.0,
+        "vehicle_records": 22469
+      },
+      {
+        "model_year": 2025,
+        "sales_units": 174035502.0,
+        "vehicle_records": 22238
+      },
+      {
+        "model_year": 2026,
+        "sales_units": 171688462.0,
+        "vehicle_records": 22118
+      }
+    ]
+  },
+  "Q4. Vehicle category performance": {
+    "query": "SELECT category, ROUND(SUM(annual_sales_units),0) AS sales_units,\n       ROUND(AVG(range_km),1) AS avg_range_km,\n       ROUND(AVG(price_usd),0) AS avg_price_usd,\n       ROUND(AVG(customer_rating),2) AS avg_rating\nFROM ev_market_clean GROUP BY category ORDER BY sales_units DESC",
+    "row_count": 15,
+    "columns": [
+      "category",
+      "sales_units",
+      "avg_range_km",
+      "avg_price_usd",
+      "avg_rating"
+    ],
+    "data": [
+      {
+        "category": "Two-Wheeler Scooter",
+        "sales_units": 175389726.0,
+        "avg_range_km": 105.0,
+        "avg_price_usd": 2555.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Hatchback",
+        "sales_units": 155589242.0,
+        "avg_range_km": 279.7,
+        "avg_price_usd": 23026.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Compact SUV",
+        "sales_units": 154153576.0,
+        "avg_range_km": 369.4,
+        "avg_price_usd": 36472.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Sedan",
+        "sales_units": 153967631.0,
+        "avg_range_km": 429.6,
+        "avg_price_usd": 42489.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Three-Wheeler",
+        "sales_units": 133769824.0,
+        "avg_range_km": 130.3,
+        "avg_price_usd": 5504.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Crossover",
+        "sales_units": 132896523.0,
+        "avg_range_km": 395.1,
+        "avg_price_usd": 41002.0,
+        "avg_rating": 4.08
+      },
+      {
+        "category": "Micro City Car",
+        "sales_units": 115970347.0,
+        "avg_range_km": 150.2,
+        "avg_price_usd": 13009.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Luxury Sedan",
+        "sales_units": 115805979.0,
+        "avg_range_km": 550.6,
+        "avg_price_usd": 90261.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Full-size SUV",
+        "sales_units": 115179948.0,
+        "avg_range_km": 474.6,
+        "avg_price_usd": 85056.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Van / MPV",
+        "sales_units": 98069297.0,
+        "avg_range_km": 319.6,
+        "avg_price_usd": 47554.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Luxury SUV",
+        "sales_units": 96319906.0,
+        "avg_range_km": 524.8,
+        "avg_price_usd": 116295.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Sports Car",
+        "sales_units": 74315032.0,
+        "avg_range_km": 375.5,
+        "avg_price_usd": 163593.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Electric Truck",
+        "sales_units": 13302565.0,
+        "avg_range_km": 225.6,
+        "avg_price_usd": 167749.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Pickup Truck",
+        "sales_units": 13293034.0,
+        "avg_range_km": 390.7,
+        "avg_price_usd": 68108.0,
+        "avg_rating": 4.1
+      },
+      {
+        "category": "Electric Bus",
+        "sales_units": 10680868.0,
+        "avg_range_km": 269.8,
+        "avg_price_usd": 274543.0,
+        "avg_rating": 4.08
+      }
+    ]
+  },
+  "Q5. Battery technology comparison": {
+    "query": "SELECT battery_type, COUNT(*) AS vehicle_records,\n       ROUND(AVG(battery_capacity_kwh),1) AS avg_capacity_kwh,\n       ROUND(AVG(range_km),1) AS avg_range_km,\n       ROUND(AVG(battery_degradation_pct_5yr),2) AS avg_5yr_degradation_pct,\n       ROUND(SUM(annual_sales_units),0) AS sales_units\nFROM ev_market_clean GROUP BY battery_type ORDER BY sales_units DESC",
+    "row_count": 5,
+    "columns": [
+      "battery_type",
+      "vehicle_records",
+      "avg_capacity_kwh",
+      "avg_range_km",
+      "avg_5yr_degradation_pct",
+      "sales_units"
+    ],
+    "data": [
+      {
+        "battery_type": "NMC",
+        "vehicle_records": 67672,
+        "avg_capacity_kwh": 78.3,
+        "avg_range_km": 324.3,
+        "avg_5yr_degradation_pct": 14.03,
+        "sales_units": 526947105.0
+      },
+      {
+        "battery_type": "LFP",
+        "vehicle_records": 64036,
+        "avg_capacity_kwh": 78.3,
+        "avg_range_km": 324.2,
+        "avg_5yr_degradation_pct": 10.13,
+        "sales_units": 498490599.0
+      },
+      {
+        "battery_type": "NCA",
+        "vehicle_records": 34099,
+        "avg_capacity_kwh": 77.9,
+        "avg_range_km": 325.0,
+        "avg_5yr_degradation_pct": 14.04,
+        "sales_units": 268496582.0
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "vehicle_records": 20089,
+        "avg_capacity_kwh": 78.1,
+        "avg_range_km": 325.9,
+        "avg_5yr_degradation_pct": 14.01,
+        "sales_units": 154156827.0
+      },
+      {
+        "battery_type": "Solid-State",
+        "vehicle_records": 14103,
+        "avg_capacity_kwh": 78.8,
+        "avg_range_km": 324.1,
+        "avg_5yr_degradation_pct": 7.44,
+        "sales_units": 110612385.0
+      }
+    ]
+  },
+  "Q6. Top 10 manufacturers by recorded sales": {
+    "query": "SELECT manufacturer, ROUND(SUM(annual_sales_units),0) AS sales_units,\n       COUNT(*) AS model_records, ROUND(AVG(customer_rating),2) AS avg_rating\nFROM ev_market_clean GROUP BY manufacturer\nORDER BY sales_units DESC LIMIT 10",
+    "row_count": 10,
+    "columns": [
+      "manufacturer",
+      "sales_units",
+      "model_records",
+      "avg_rating"
+    ],
+    "data": [
+      {
+        "manufacturer": "AmpereWorks",
+        "sales_units": 9504546.0,
+        "model_records": 1067,
+        "avg_rating": 4.09
+      },
+      {
+        "manufacturer": "CircuitWorks",
+        "sales_units": 8974463.0,
+        "model_records": 1054,
+        "avg_rating": 4.1
+      },
+      {
+        "manufacturer": "MomentumMobility",
+        "sales_units": 8825889.0,
+        "model_records": 995,
+        "avg_rating": 4.11
+      },
+      {
+        "manufacturer": "SurgeDynamics",
+        "sales_units": 8818897.0,
+        "model_records": 1060,
+        "avg_rating": 4.08
+      },
+      {
+        "manufacturer": "TerraMotors",
+        "sales_units": 8785609.0,
+        "model_records": 1048,
+        "avg_rating": 4.08
+      },
+      {
+        "manufacturer": "AmpereDynamics",
+        "sales_units": 8760706.0,
+        "model_records": 1060,
+        "avg_rating": 4.1
+      },
+      {
+        "manufacturer": "VoltMobility",
+        "sales_units": 8758091.0,
+        "model_records": 1039,
+        "avg_rating": 4.08
+      },
+      {
+        "manufacturer": "CurrentMotors",
+        "sales_units": 8751063.0,
+        "model_records": 1031,
+        "avg_rating": 4.1
+      },
+      {
+        "manufacturer": "WattWheels",
+        "sales_units": 8721227.0,
+        "model_records": 1058,
+        "avg_rating": 4.1
+      },
+      {
+        "manufacturer": "CircuitRides",
+        "sales_units": 8681927.0,
+        "model_records": 992,
+        "avg_rating": 4.07
+      }
+    ]
+  },
+  "Q7. Manufacturing countries": {
+    "query": "SELECT manufacturing_country, COUNT(*) AS vehicle_records,\n       ROUND(SUM(annual_sales_units),0) AS sales_units,\n       ROUND(AVG(range_km),1) AS avg_range_km\nFROM ev_market_clean GROUP BY manufacturing_country ORDER BY sales_units DESC",
+    "row_count": 10,
+    "columns": [
+      "manufacturing_country",
+      "vehicle_records",
+      "sales_units",
+      "avg_range_km"
+    ],
+    "data": [
+      {
+        "manufacturing_country": "India",
+        "vehicle_records": 20231,
+        "sales_units": 159957989.0,
+        "avg_range_km": 324.4
+      },
+      {
+        "manufacturing_country": "China",
+        "vehicle_records": 20052,
+        "sales_units": 159355406.0,
+        "avg_range_km": 326.0
+      },
+      {
+        "manufacturing_country": "Vietnam",
+        "vehicle_records": 19858,
+        "sales_units": 158066930.0,
+        "avg_range_km": 323.3
+      },
+      {
+        "manufacturing_country": "UK",
+        "vehicle_records": 20098,
+        "sales_units": 157557969.0,
+        "avg_range_km": 324.4
+      },
+      {
+        "manufacturing_country": "South Korea",
+        "vehicle_records": 20138,
+        "sales_units": 156097608.0,
+        "avg_range_km": 325.5
+      },
+      {
+        "manufacturing_country": "USA",
+        "vehicle_records": 20086,
+        "sales_units": 156038379.0,
+        "avg_range_km": 324.5
+      },
+      {
+        "manufacturing_country": "France",
+        "vehicle_records": 19992,
+        "sales_units": 155783065.0,
+        "avg_range_km": 324.2
+      },
+      {
+        "manufacturing_country": "Germany",
+        "vehicle_records": 20009,
+        "sales_units": 154589921.0,
+        "avg_range_km": 323.9
+      },
+      {
+        "manufacturing_country": "Sweden",
+        "vehicle_records": 19921,
+        "sales_units": 152217342.0,
+        "avg_range_km": 325.9
+      },
+      {
+        "manufacturing_country": "Japan",
+        "vehicle_records": 19614,
+        "sales_units": 149038889.0,
+        "avg_range_km": 323.3
+      }
+    ]
+  },
+  "Q8. Price vs range by category": {
+    "query": "SELECT category, ROUND(AVG(price_usd),0) AS avg_price_usd,\n       ROUND(AVG(range_km),1) AS avg_range_km,\n       ROUND(AVG(customer_rating),2) AS avg_rating\nFROM ev_market_clean GROUP BY category",
+    "row_count": 15,
+    "columns": [
+      "category",
+      "avg_price_usd",
+      "avg_range_km",
+      "avg_rating"
+    ],
+    "data": [
+      {
+        "category": "Compact SUV",
+        "avg_price_usd": 36472.0,
+        "avg_range_km": 369.4,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Crossover",
+        "avg_price_usd": 41002.0,
+        "avg_range_km": 395.1,
+        "avg_rating": 4.08
+      },
+      {
+        "category": "Electric Bus",
+        "avg_price_usd": 274543.0,
+        "avg_range_km": 269.8,
+        "avg_rating": 4.08
+      },
+      {
+        "category": "Electric Truck",
+        "avg_price_usd": 167749.0,
+        "avg_range_km": 225.6,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Full-size SUV",
+        "avg_price_usd": 85056.0,
+        "avg_range_km": 474.6,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Hatchback",
+        "avg_price_usd": 23026.0,
+        "avg_range_km": 279.7,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Luxury SUV",
+        "avg_price_usd": 116295.0,
+        "avg_range_km": 524.8,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Luxury Sedan",
+        "avg_price_usd": 90261.0,
+        "avg_range_km": 550.6,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Micro City Car",
+        "avg_price_usd": 13009.0,
+        "avg_range_km": 150.2,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Pickup Truck",
+        "avg_price_usd": 68108.0,
+        "avg_range_km": 390.7,
+        "avg_rating": 4.1
+      },
+      {
+        "category": "Sedan",
+        "avg_price_usd": 42489.0,
+        "avg_range_km": 429.6,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Sports Car",
+        "avg_price_usd": 163593.0,
+        "avg_range_km": 375.5,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Three-Wheeler",
+        "avg_price_usd": 5504.0,
+        "avg_range_km": 130.3,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Two-Wheeler Scooter",
+        "avg_price_usd": 2555.0,
+        "avg_range_km": 105.0,
+        "avg_rating": 4.09
+      },
+      {
+        "category": "Van / MPV",
+        "avg_price_usd": 47554.0,
+        "avg_range_km": 319.6,
+        "avg_rating": 4.09
+      }
+    ]
+  },
+  "Q9. Customer ratings by battery type and category": {
+    "query": "SELECT battery_type, category, ROUND(AVG(customer_rating),2) AS avg_rating,\n       COUNT(customer_rating) AS rating_records\nFROM ev_market_clean GROUP BY battery_type, category\nORDER BY avg_rating DESC",
+    "row_count": 75,
+    "columns": [
+      "battery_type",
+      "category",
+      "avg_rating",
+      "rating_records"
+    ],
+    "data": [
+      {
+        "battery_type": "Solid-State",
+        "category": "Electric Bus",
+        "avg_rating": 4.14,
+        "rating_records": 598
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Sedan",
+        "avg_rating": 4.12,
+        "rating_records": 1205
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Micro City Car",
+        "avg_rating": 4.11,
+        "rating_records": 2249
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Compact SUV",
+        "avg_rating": 4.11,
+        "rating_records": 1173
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Van / MPV",
+        "avg_rating": 4.11,
+        "rating_records": 787
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Compact SUV",
+        "avg_rating": 4.1,
+        "rating_records": 5446
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Pickup Truck",
+        "avg_rating": 4.1,
+        "rating_records": 3433
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Van / MPV",
+        "avg_rating": 4.1,
+        "rating_records": 3439
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Compact SUV",
+        "avg_rating": 4.1,
+        "rating_records": 2909
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Full-size SUV",
+        "avg_rating": 4.1,
+        "rating_records": 2180
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Hatchback",
+        "avg_rating": 4.1,
+        "rating_records": 2990
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Sedan",
+        "avg_rating": 4.1,
+        "rating_records": 2949
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Sports Car",
+        "avg_rating": 4.1,
+        "rating_records": 1374
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Two-Wheeler Scooter",
+        "avg_rating": 4.1,
+        "rating_records": 3303
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Luxury SUV",
+        "avg_rating": 4.1,
+        "rating_records": 3547
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Pickup Truck",
+        "avg_rating": 4.1,
+        "rating_records": 3590
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Sports Car",
+        "avg_rating": 4.1,
+        "rating_records": 3023
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Van / MPV",
+        "avg_rating": 4.1,
+        "rating_records": 3602
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Electric Truck",
+        "avg_rating": 4.1,
+        "rating_records": 1003
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Luxury Sedan",
+        "avg_rating": 4.1,
+        "rating_records": 1331
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Full-size SUV",
+        "avg_rating": 4.1,
+        "rating_records": 890
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Micro City Car",
+        "avg_rating": 4.1,
+        "rating_records": 877
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Pickup Truck",
+        "avg_rating": 4.1,
+        "rating_records": 812
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Three-Wheeler",
+        "avg_rating": 4.1,
+        "rating_records": 1091
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Full-size SUV",
+        "avg_rating": 4.09,
+        "rating_records": 4122
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Luxury SUV",
+        "avg_rating": 4.09,
+        "rating_records": 3497
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Luxury Sedan",
+        "avg_rating": 4.09,
+        "rating_records": 4165
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Micro City Car",
+        "avg_rating": 4.09,
+        "rating_records": 4145
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Sedan",
+        "avg_rating": 4.09,
+        "rating_records": 5532
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Sports Car",
+        "avg_rating": 4.09,
+        "rating_records": 2696
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Three-Wheeler",
+        "avg_rating": 4.09,
+        "rating_records": 4734
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Two-Wheeler Scooter",
+        "avg_rating": 4.09,
+        "rating_records": 6378
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Electric Truck",
+        "avg_rating": 4.09,
+        "rating_records": 1786
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Pickup Truck",
+        "avg_rating": 4.09,
+        "rating_records": 1828
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Three-Wheeler",
+        "avg_rating": 4.09,
+        "rating_records": 2572
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Electric Truck",
+        "avg_rating": 4.09,
+        "rating_records": 3610
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Full-size SUV",
+        "avg_rating": 4.09,
+        "rating_records": 4423
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Luxury Sedan",
+        "avg_rating": 4.09,
+        "rating_records": 4380
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Crossover",
+        "avg_rating": 4.09,
+        "rating_records": 1476
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Full-size SUV",
+        "avg_rating": 4.09,
+        "rating_records": 1299
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Hatchback",
+        "avg_rating": 4.09,
+        "rating_records": 1700
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Pickup Truck",
+        "avg_rating": 4.09,
+        "rating_records": 1122
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Sedan",
+        "avg_rating": 4.09,
+        "rating_records": 1725
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Sports Car",
+        "avg_rating": 4.09,
+        "rating_records": 894
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Three-Wheeler",
+        "avg_rating": 4.09,
+        "rating_records": 1528
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Two-Wheeler Scooter",
+        "avg_rating": 4.09,
+        "rating_records": 1951
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Crossover",
+        "avg_rating": 4.09,
+        "rating_records": 1107
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Electric Truck",
+        "avg_rating": 4.09,
+        "rating_records": 764
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Luxury Sedan",
+        "avg_rating": 4.09,
+        "rating_records": 878
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Two-Wheeler Scooter",
+        "avg_rating": 4.09,
+        "rating_records": 1354
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Crossover",
+        "avg_rating": 4.08,
+        "rating_records": 4696
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Electric Bus",
+        "avg_rating": 4.08,
+        "rating_records": 2776
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Electric Truck",
+        "avg_rating": 4.08,
+        "rating_records": 3456
+      },
+      {
+        "battery_type": "LFP",
+        "category": "Hatchback",
+        "avg_rating": 4.08,
+        "rating_records": 5521
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Crossover",
+        "avg_rating": 4.08,
+        "rating_records": 2528
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Electric Bus",
+        "avg_rating": 4.08,
+        "rating_records": 1423
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Van / MPV",
+        "avg_rating": 4.08,
+        "rating_records": 1863
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Compact SUV",
+        "avg_rating": 4.08,
+        "rating_records": 5826
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Crossover",
+        "avg_rating": 4.08,
+        "rating_records": 5117
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Electric Bus",
+        "avg_rating": 4.08,
+        "rating_records": 2949
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Hatchback",
+        "avg_rating": 4.08,
+        "rating_records": 5714
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Micro City Car",
+        "avg_rating": 4.08,
+        "rating_records": 4271
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Sedan",
+        "avg_rating": 4.08,
+        "rating_records": 5823
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Three-Wheeler",
+        "avg_rating": 4.08,
+        "rating_records": 5131
+      },
+      {
+        "battery_type": "NMC",
+        "category": "Two-Wheeler Scooter",
+        "avg_rating": 4.08,
+        "rating_records": 6666
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Micro City Car",
+        "avg_rating": 4.08,
+        "rating_records": 1266
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Luxury SUV",
+        "avg_rating": 4.08,
+        "rating_records": 762
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Luxury SUV",
+        "avg_rating": 4.07,
+        "rating_records": 1876
+      },
+      {
+        "battery_type": "NCA",
+        "category": "Luxury Sedan",
+        "avg_rating": 4.07,
+        "rating_records": 2269
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Compact SUV",
+        "avg_rating": 4.07,
+        "rating_records": 1783
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Electric Bus",
+        "avg_rating": 4.07,
+        "rating_records": 872
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Hatchback",
+        "avg_rating": 4.07,
+        "rating_records": 1217
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Luxury SUV",
+        "avg_rating": 4.06,
+        "rating_records": 1067
+      },
+      {
+        "battery_type": "Sodium-Ion",
+        "category": "Van / MPV",
+        "avg_rating": 4.05,
+        "rating_records": 1072
+      },
+      {
+        "battery_type": "Solid-State",
+        "category": "Sports Car",
+        "avg_rating": 4.04,
+        "rating_records": 588
+      }
+    ]
+  },
+  "Query 11": {
+    "query": "SELECT COUNT(*) AS rows,\n       COUNT(DISTINCT vehicle_id) AS distinct_ids,\n       SUM(CASE WHEN annual_sales_units < 0 THEN 1 ELSE 0 END) AS negative_sales_rows,\n       SUM(CASE WHEN range_km <= 0 THEN 1 ELSE 0 END) AS nonpositive_range_rows\nFROM ev_market_clean",
+    "row_count": 1,
+    "columns": [
+      "rows",
+      "distinct_ids",
+      "negative_sales_rows",
+      "nonpositive_range_rows"
+    ],
+    "data": [
+      {
+        "rows": 199999,
+        "distinct_ids": 199999,
+        "negative_sales_rows": 0,
+        "nonpositive_range_rows": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+# Render deployment configuration
+# https://render.com/docs/render-yaml
+
+services:
+  - type: web
+    name: ev-market-intelligence
+    runtime: python
+    region: singapore  # Closest to India — change to oregon if preferred
+    plan: free
+    rootDir: .
+    buildCommand: pip install -r flask_app/requirements.txt
+    startCommand: gunicorn --chdir flask_app app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 120
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: "false"
+      - key: TABLEAU_DASHBOARD_URL
+        value: "https://public.tableau.com/shared/Q27K39PSC?:showVizHome=no&:embed=true&:toolbar=yes&:display_count=n"
+      - key: TABLEAU_STORY_URL
+        value: "https://public.tableau.com/views/EV_Market_Intelligence/Story1?:showVizHome=no&:embed=true&:toolbar=yes&:display_count=n&:language=en-US"
+    healthCheckPath: /health

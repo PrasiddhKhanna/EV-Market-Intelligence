@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.env
+
+# Flask / application secrets
+*.env
+!.env.example
+
+# Large uncompressed source/duplicate files
+# The runtime SQLite database (data/ev_market.db) is tracked in Git so Render has the database out-of-the-box.
+# We explicitly ignore the root copy and the CSV files.
+/ev_market.db
+/ev_market_clean.csv
+data/ev_market_clean.csv
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Logs / caches
+*.log
+*.tmp
+.pytest_cache/
+htmlcov/
+
+# Tableau backup/temp
+*.twb.bak
+*.twbx.bak
+tableau.zip
