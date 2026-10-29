@@ -5,6 +5,7 @@
 
 [![Live Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue)](https://public.tableau.com/shared/Q27K39PSC)
 [![Live Story](https://img.shields.io/badge/Tableau-Story-green)](https://public.tableau.com/views/EV_Market_Intelligence/Story1)
+![Live WebPage](https://ev-market-intelligence.onrender.com/)
 
 ---
 
@@ -178,3 +179,6 @@ gunicorn --chdir flask_app app:app --bind 0.0.0.0:$PORT --workers 1 --timeout 12
 ## 📄 License
 
 Educational use only. Dataset is synthetic and procedurally generated.
+
+
+[https://ev-market-intelligence.onrender.com/]: https://ev-market-intelligence.onrender.com/
