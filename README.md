@@ -5,7 +5,7 @@
 
 [![Live Dashboard](https://img.shields.io/badge/Tableau-Dashboard-blue)](https://public.tableau.com/shared/Q27K39PSC)
 [![Live Story](https://img.shields.io/badge/Tableau-Story-green)](https://public.tableau.com/views/EV_Market_Intelligence/Story1)
-![Live WebPage](https://ev-market-intelligence.onrender.com/)
+
 
 ---
 
@@ -108,7 +108,7 @@ Open [http://127.0.0.1:5000](http://127.0.0.1:5000)
 |------|-----|
 | **Dashboard** | https://public.tableau.com/shared/Q27K39PSC |
 | **Story (3 scenes)** | https://public.tableau.com/views/EV_Market_Intelligence/Story1 |
-
+| **Live WebPage** | https://ev-market-intelligence.onrender.com |
 ---
 
 ## 🌐 Deployment (Render)
